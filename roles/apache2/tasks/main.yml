@@ -1,0 +1,21 @@
+---
+- name: WB | install webserver
+  apt: name={{item}} state=present
+  with_items:
+    - apache2
+    - libapache2-mod-wsgi
+  tags: [ 'packages' ]
+
+- name: WB | ensure mod-wsgi enabled
+  apache2_module: state=present name=wsgi
+  notify: restart apache2
+  tags: [ 'configure' ]
+
+- name: WB | de-active default apache site
+  file: path=/etc/apache2/sites-enabled/000-default.conf state=absent
+  notify: restart apache2
+  tags: [ 'configure' ]
+
+- name: WB | ensure apache2 started
+  service: name=apache2 state=started enabled=yes
+  tags: [ 'service' ]

@@ -1,0 +1,7 @@
+---
+- hosts: webserver
+  gather_facts: false
+  remote_user: root
+  roles:
+    - apache2
+    - demo_app

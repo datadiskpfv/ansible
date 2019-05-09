@@ -1,0 +1,4 @@
+lxc launch images:ubuntu/cosmic/amd64 lb01
+lxc launch images:ubuntu/cosmic/amd64 app01
+lxc launch images:ubuntu/cosmic/amd64 app02
+lxc launch images:ubuntu/cosmic/amd64 db01
